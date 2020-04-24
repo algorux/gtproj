@@ -1,6 +1,6 @@
 <?php namespace App\Database\Migrations;
 
-class AddBlog extends \CodeIgniter\Database\Migration {
+class CreateUsers extends \CodeIgniter\Database\Migration {
 
         public function up()
         {
@@ -37,12 +37,12 @@ class AddBlog extends \CodeIgniter\Database\Migration {
                                 'null'           => TRUE,
                         ],
                 ]);
-                $this->forge->addKey('blog_id', TRUE);
-                $this->forge->createTable('blog');
+                $this->forge->addKey('user_id', TRUE);
+                $this->forge->createTable('users');
         }
 
         public function down()
         {
-                $this->forge->dropTable('blog');
+                $this->forge->dropTable('users');
         }
 }

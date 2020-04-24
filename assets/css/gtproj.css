@@ -1,0 +1,7 @@
+@media screen and (max-width: 1000px) {
+#button-many-cards {
+display:none;
+}
+#button-few-cards {
+display:none;
+}}
