@@ -2,12 +2,29 @@
 
 class Home extends BaseController
 {
+	// protected $request;
+	// public function __construct(RequestInterface $request)
+ //    {
+ //            $this->request = $request;
+ //    }
 	public function index()
 	{	
 		$data = [];
-		$data['welcome_message'] = ["dato1" => "dato1", "dato2"=>"comer", "dato3" => "comer"];
+		
 		$data['footer'] = ["footer1" => "copyrigth"];
-		$this->render('welcome_message',$data);	
+		
+		$media =  new \App\Models\MediaModel();
+		$media->getMedia();
+		echo "<pre>";
+		var_dump($media);
+		echo "</pre>";
+		$data['welcome_message'] = ["media" => $media];
+		//$this->render('welcome_message',$data);	
+	}
+
+	public function insertMedia() {
+		$request->getGet();
+		var_dump($request);
 	}
 
 	public function connect(){
