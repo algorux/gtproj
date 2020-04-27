@@ -65,7 +65,7 @@ class BaseController extends Controller
 		}
 		else {
 			if (array_key_exists('header', $data))
-				echo view('renders/header', $data['footer']);
+				echo view('renders/header', $data['header']);
 			else
 				echo view('renders/header');
 		}
@@ -103,6 +103,9 @@ class BaseController extends Controller
 			else
 				echo view('renders/footer');
 		}
+	}
+	public function getTags(){
+		
 	}
 
 }

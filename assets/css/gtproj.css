@@ -5,3 +5,8 @@ display:none;
 #button-few-cards {
 display:none;
 }}
+
+img {
+  max-width: 100%;
+  height: auto;
+}

@@ -15,8 +15,18 @@ class MediaModel extends Model
      protected $validationRules    = [];
 
      public function getMedia($limit = 10, $offset = 0) {
-     	$users = $this->where('private', 0)
-                   ->findAll();
+     	return  $this->where('private', 0)
+     				->orderBy('id',"DESC")
+                   ->findAll($limit, $offset);
+
      }
+     
+     public function save_first($data){
+     	$db = \Config\Database::connect();     
+     	$db->table('media')->insert($data);
+          return $db->insertID();
+          // var_dump($ids);
+     }
+
 
 }

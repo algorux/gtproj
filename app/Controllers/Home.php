@@ -11,37 +11,26 @@ class Home extends BaseController
 	{	
 		$data = [];
 		
-		$data['footer'] = ["footer1" => "copyrigth"];
+		// $data['footer'] = ["footer1" => "copyrigth"];
 		
 		$media =  new \App\Models\MediaModel();
-		$media->getMedia();
-		echo "<pre>";
-		var_dump($media);
-		echo "</pre>";
-		$data['welcome_message'] = ["media" => $media];
-		//$this->render('welcome_message',$data);	
+		$tags =  new \App\Models\TagsModel();
+		$media_set = $media->getMedia();
+		$tag_list = $tags->get();
+		$contextual = [];
+		foreach ($tag_list as $key => $value) {
+			$contextual[] = ["url" => "#", "nav" => $value['name']];
+		}
+		$data['header'] = ["header_name" => "Home", "contextual" => $contextual, "contextual_name" => "Tags"];
+		$data['footer'] = ["js" => ["cuadricula.js"]];
+		//echo password_hash("ilovegiantess", PASSWORD_DEFAULT)."\n";
+		$data['welcome_message'] = ["media" => $media_set];
+		$this->render('welcome_message',$data);	
 	}
 
-	public function insertMedia() {
-		$request->getGet();
-		var_dump($request);
-	}
+	
 
-	public function connect(){
-		$db = \Config\Database::connect();
-		 $error = "no error";
-		if ($db->simpleQuery('SELECT * FROM test'))
-		{
-		        echo "Success!";
-		        var_dump($db);
-		}
-		else
-		{
-				 $error = $db->error();
-		        echo var_dump($error);
-		}
-				$db->close();
-	}
+	
 	
 
 	//--------------------------------------------------------------------

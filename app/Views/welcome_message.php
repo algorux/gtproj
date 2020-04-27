@@ -1,7 +1,7 @@
 
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
+  
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
@@ -12,6 +12,7 @@
           <div class="col-sm-2 float-rigt">
           	<button class="btn btn-primary" id="button-many-cards"><i class="nav-icon fas fa-th"></i></button>
           	<button class="btn btn-primary" id="button-few-cards"><i class="nav-icon fas fa-th-large"></i></button>
+            <a href="/gtproj/upload" class="btn btn-primary" ><i class="nav-icon fas fa-upload"></i></a>
           </div>
         </div><!-- /.row -->
 
@@ -23,99 +24,25 @@
     <section class="content">
       <div class="container-fluid">
       	<div class="row" id="cuadricula">
-      		<div class="col-lg-4">
-	            <div class="card">
-	              <div class="card-body">
-	                <a href="#" class><p class="card-text"><?= $dato1 ?></p></a>
-	              </div>
-	            </div>
-            </div>
-            <div class="col-lg-4">
-	            <div class="card">
-	              <div class="card-body">
-	                <a href="#" class><p class="card-text">Multimedia</p></a>
-	              </div>
-	            </div>
-            </div>
-            <div class="col-lg-4">
-	            <div class="card">
-	              <div class="card-body">
-	                <a href="#" class><p class="card-text">Multimedia</p></a>
-	              </div>
-	            </div>
-            </div>
-            <div class="col-lg-4">
-	            <div class="card">
-	              <div class="card-body">
-	                <a href="#" class><p class="card-text">Multimedia</p></a>
-	              </div>
-	            </div>
-            </div>
+      		
+            
+            <?php
+            foreach ($media as  $value) {
+              ?>
+              <div class="col-lg-4">
+                  <div class="card">
+                    <div class="card-body">
+                      <a href="#" class><p class="card-text"><img src="<?= $value['url']?>" height="200" width="100%"></p></a>
+                    </div>
+                  </div>
+              </div>
+              <?php
+              }//fin foreach
+              ?>
           </div>
       	</div>
         <!-- Small boxes (Stat box) -->
-        <div class="row">
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-info">
-              <div class="inner">
-                <h3>150</h3>
-
-                <p>New Orders</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-bag"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-success">
-              <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
-
-                <p>Bounce Rate</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-stats-bars"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-warning">
-              <div class="inner">
-                <h3>44</h3>
-
-                <p>User Registrations</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-person-add"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-danger">
-              <div class="inner">
-                <h3>65</h3>
-
-                <p>Unique Visitors</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-pie-graph"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          <!-- ./col -->
-        </div>
+        
         <!-- /.row -->
         <!-- Main row -->
         <div class="col-md-6">
@@ -190,6 +117,9 @@
       </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
-  </div>
+  
   <!-- /.content-wrapper -->
+  
+
+  <!-- spooky scary skeletons -->
   

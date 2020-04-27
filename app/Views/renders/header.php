@@ -21,7 +21,9 @@
   <link rel="stylesheet" href="/gtproj/assets/css/gtproj.css">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="/gtproj/assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
-  
+  <!-- Select2 -->
+  <link rel="stylesheet" href="/gtproj/assets/plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="/gtproj/assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
   <!-- summernote -->
   <link rel="stylesheet" href="/gtproj/assets/plugins/summernote/summernote-bs4.css">
   <!-- Google Font: Source Sans Pro -->
@@ -65,7 +67,7 @@
         
       </li>
       <!-- Notifications Dropdown Menu -->
-      
+      <?php echo $error;?>
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-user"></i>
@@ -120,7 +122,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="#" class="nav-link active">
+            <a href="/gtproj/" class="nav-link active">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Cuadrícula
@@ -149,27 +151,45 @@
             
           </li>
   
-          <li class="nav-header">Contextual</li>
-          <li class="nav-item">
-            <a href="pages/calendar.html" class="nav-link">
-              <i class="nav-icon far fa-calendar-alt"></i>
-              <p>
-                Calendar
-                <span class="badge badge-info right">2</span>
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="pages/gallery.html" class="nav-link">
-              <i class="nav-icon far fa-image"></i>
-              <p>
-                Gallery
-              </p>
-            </a>
-          </li> 
+          <li class="nav-header"><?= isset($contextual_name) ? $contextual_name : "Contextual"?></li>
+          
+            
+              <?php
+              if (isset($contextual)) {
+                foreach ($contextual as $value) {
+                  echo '<li class="nav-item"><a href="'.$value['url'].'" class="nav-link"><p>'.$value['nav'].'</p></a></li>';
+                }
+                echo '<li class="nav-item"><a id="offset" class="nav-link"><span>Ver más etiquetas</span>&nbsp;&nbsp;&nbsp;<span class="pull-right-container"><i class="fa fa-plus pull-right"></i></span></a></li>';
+              }
+              
+              ?>
+              
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
   </aside>
+  <div class="content-wrapper">
+  <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1><?= $header_name ?></h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <?php
+              if (!empty($breadcrum)) {
+                 foreach ($breadcrum as $key => $value) {
+                  echo "<li class='breadcrumb-item active'><a href='".$value."'>".$key."</a></li>";
+                }
+              }
+               
+              ?>
+              <li class="breadcrumb-item active"><?= $header_name?></li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>  

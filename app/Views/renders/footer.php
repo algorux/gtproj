@@ -1,8 +1,9 @@
+</div>
 <footer class="main-footer">
     <strong>Copyright &copy; 2020 <a href="http://gtproj">gtproj</a>.</strong>
     All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 1.0 <?= $footer1?>
+      <b>Version</b> 1.0
     </div>
   </footer>
 
@@ -25,12 +26,18 @@
 <!-- Sparkline -->
 <script src="/gtproj/assets/plugins/sparklines/sparkline.js"></script>
 
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8.11.5/dist/sweetalert2.all.min.js"></script>
+<!-- Select2 -->
+<script src="/gtproj/assets/plugins/select2/js/select2.full.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/gtproj/assets/js/adminlte.js"></script>
 
 <!-- AdminLTE for demo purposes -->
+<?php
+  foreach ($js as $value) {
+    echo '<script src="/gtproj/assets/js/'.$value.'"></script>';
+  }
+?>
 
-<script src="/gtproj/assets/js/cuadricula.js"></script>
 </body>
 </html>

@@ -10,4 +10,10 @@ $(document).ready(function() {
   	$("#cuadricula").children().removeClass("col-lg-4");
   	$("#cuadricula").children().addClass("col-lg-4");
   });
+  $("#offset").on('click', function(){
+    $.get('/gtproj/tags/offset')
+    .done(function(){
+      
+    });
+  });
 });
