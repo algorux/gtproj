@@ -67,7 +67,7 @@
         
       </li>
       <!-- Notifications Dropdown Menu -->
-      <?php echo $error;?>
+     
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-user"></i>
@@ -152,14 +152,15 @@
           </li>
   
           <li class="nav-header"><?= isset($contextual_name) ? $contextual_name : "Contextual"?></li>
-          
+              <div id="taglist-delimitator">
             
               <?php
               if (isset($contextual)) {
                 foreach ($contextual as $value) {
                   echo '<li class="nav-item"><a href="'.$value['url'].'" class="nav-link"><p>'.$value['nav'].'</p></a></li>';
                 }
-                echo '<li class="nav-item"><a id="offset" class="nav-link"><span>Ver más etiquetas</span>&nbsp;&nbsp;&nbsp;<span class="pull-right-container"><i class="fa fa-plus pull-right"></i></span></a></li>';
+                echo "</div>";
+                echo '<li class="nav-item"><a id="offset" current-page="0" class="nav-link"><span>Ver más etiquetas</span>&nbsp;&nbsp;&nbsp;<span class="pull-right-container"><i class="fa fa-plus pull-right"></i></span></a></li>';
               }
               
               ?>
@@ -171,6 +172,19 @@
     <!-- /.sidebar -->
   </aside>
   <div class="content-wrapper">
+    <?php
+    if (!empty($message)) {
+      # code...
+    
+    ?>
+      <div class="alert alert-<?=$message['type']?> alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h5><i class="icon <?= $message['symbol']?>"></i> Mensaje</h5>
+        <?=$message['message']?>.
+      </div>
+    <?php 
+    }
+    ?>
   <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">

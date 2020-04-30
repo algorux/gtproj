@@ -3,13 +3,13 @@
 class Upload extends BaseController
 {
 	protected $media;
-	protected $media_set;
+	
 	protected $request;
 
 	public function __construct()
     {
     	$this->media =  new \App\Models\MediaModel();
-		$this->media_set = $this->media->getMedia();
+		
 		$this->request = \Config\Services::request();
 		$this->session = \Config\Services::session();
 

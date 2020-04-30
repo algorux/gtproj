@@ -32,7 +32,7 @@
               <div class="col-lg-4">
                   <div class="card">
                     <div class="card-body">
-                      <a href="#" class><p class="card-text"><img src="<?= $value['url']?>" height="200" width="100%"></p></a>
+                      <a href="" class><p class="card-text"><img src="<?= $value['url']?>" height="200" width="100%"></p></a>
                     </div>
                   </div>
               </div>

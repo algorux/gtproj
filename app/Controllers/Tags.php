@@ -16,7 +16,17 @@ class Tags
     }
 	public function index()
 	{	
-		echo json_encode($this->tags->get());
+		$limit = 10;
+		$offset = 1;
+		$parameters = $this->request->getGet();
+		if (array_key_exists("limit", $parameters)) {
+			$limit = (int)$parameters['limit'];
+		}
+		if (array_key_exists("offset", $parameters)) {
+			$offset = (int)$parameters['offset'];
+		}
+		// var_dump($parameters);
+		echo json_encode($this->tags->get($limit,$offset));
 	}
 	
 	public function edit($id = 0) {
@@ -27,6 +37,7 @@ class Tags
 		
 		
 	}
+
 
 	
 

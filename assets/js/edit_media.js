@@ -3,7 +3,7 @@ $(document).ready(function() {
 
 //Initialize Select2 Elements
 //Go fetch categories
-	$.get("/gtproj/tags")
+	$.get("/gtproj/tags?limit=0")
 	 .done(function(data){
 	 	var obj = JSON.parse(data);
 	 	$.each(obj, function(index,value){
@@ -13,7 +13,7 @@ $(document).ready(function() {
 	 	});
 
 	 	
-	 	$('.select2').select2();
+	 	// $('.select2').select2();
 	    $('.select2bs4').select2({
 	      theme: 'bootstrap4'
 	    });

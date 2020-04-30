@@ -11,9 +11,18 @@ $(document).ready(function() {
   	$("#cuadricula").children().addClass("col-lg-4");
   });
   $("#offset").on('click', function(){
-    $.get('/gtproj/tags/offset')
-    .done(function(){
-      
+    var selector = $(this);
+    var current_page = parseInt(selector.attr("current-page"));
+    current_page ++;
+    $.get('/gtproj/tags?limit=10&offset=' + current_page)
+    .done(function(data){
+      // console.log(data);
+      data = JSON.parse(data);
+      selector.attr("current-page",current_page);
+      $.each(data,function(index,value){
+        $("#taglist-delimitator").append('<li class="nav-item"><a href="/gtproj?tags[]='+value.name+'" class="nav-link"><p>'+ value.name +'</p></a></li>')
+      });
     });
+    
   });
 });

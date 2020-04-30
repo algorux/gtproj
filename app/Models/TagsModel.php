@@ -15,10 +15,11 @@ class TagsModel extends Model
      protected $validationRules    = [];
 
      public function get($limit = 10, $offset = 0) {
+          $offset = $limit * $offset;
      	return  $this
                          // ->where('languages_id', $languages_id)
      				->orderBy('name',"ASC")
-                         ->findAll($limit = 10, $offset = 0);
+                         ->findAll($limit, $offset);
 
      }
      
@@ -27,6 +28,17 @@ class TagsModel extends Model
      	$db->table('cat_categories')->insert($data);
           return $db->insertID();
           // var_dump($ids);
+     }
+
+     public function exists($name) {
+          $return = $this
+                         ->where('name', $name)
+                         ->first();
+          if ($return == null) {
+               return false;
+          }
+          else
+               return $return['id'];
      }
 
 
