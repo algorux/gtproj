@@ -76,9 +76,18 @@
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
           <span class="dropdown-item dropdown-header">Panel de usuario</span>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
+          <?php
+          if (empty($user)) {
+          
+          ?>
+          <a href="/gtproj/user/login" class="dropdown-item">
             <i class="fas fa-sign-in-alt mr-2"></i> Iniciar sesión
           </a>
+          <?php
+          }
+          else {
+          
+          ?>
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item">
             <i class="fas fa-users mr-2"></i> 8 solicitudes
@@ -94,9 +103,13 @@
             <i class="fas fa-sign-out-alt mr-2"></i> Salir
             
           </a>
+          
           <div class="dropdown-divider"></div>
           <a href="#" class="dropdown-item dropdown-footer">Ver todas las notificaciones</a>
         </div>
+        <?php
+          }
+        ?>
       </li>
       
     </ul>

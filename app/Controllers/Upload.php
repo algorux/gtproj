@@ -20,7 +20,7 @@ class Upload extends BaseController
 		
 		//echo password_hash("ilovegiantess", PASSWORD_DEFAULT)."\n";
 		$data['footer'] = ["js" => ["upload.js"]];
-		$data['header'] = ["header_name" => "My Collection", "breadcrum" => ["Home" => "/gtproj/"]];
+		$data['header'] = ["header_name" => "My Collection", "breadcrum" => ["Home" => "/gtproj/"],'user' => $this->user];
 		$this->render('upload',$data);	
 	}
 

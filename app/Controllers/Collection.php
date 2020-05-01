@@ -16,6 +16,7 @@ class Collection
 		$this->request = \Config\Services::request();
 		$this->session = \Config\Services::session();
 		$this->message = $this->session->getFlashData('message');
+		$this->user = $this->session->get('user');
 
     }
 	public function index()
@@ -28,7 +29,7 @@ class Collection
 		foreach ($tag_list as $key => $value) {
 			$contextual[] = ["url" => "/gtproj?tags[]=".$value['name'], "nav" => $value['name']];
 		}
-		$data['header'] = ["header_name" => "Home", "contextual" => $contextual, "contextual_name" => "Tags", 'message' => $this->message];
+		$data['header'] = ["header_name" => "Home", "contextual" => $contextual, "contextual_name" => "Tags", 'message' => $this->message, 'user' => $this->user];
 		$data['footer'] = ["js" => ["cuadricula.js"]];
 		
 		$data['welcome_message'] = ["media" => $media_set];
@@ -41,7 +42,7 @@ class Collection
 		if (!empty($ids)) {
 			$newbies = $this->media->find($ids);
 			$data['footer'] = ["js" => ["edit_media.js"]];
-			$data['header'] = ["header_name" => "Edit", "breadcrum" => ["Home" => "/gtproj/", "Collection" => "/gtproj/collection"]];
+			$data['header'] = ["header_name" => "Edit", "breadcrum" => ["Home" => "/gtproj/", "Collection" => "/gtproj/collection"],'user' => $this->user];
 			$data['edit'] = ['newbies' => $newbies];
 			// var_dump($newbies);
 			$this->render('edit',$data);	
@@ -50,7 +51,7 @@ class Collection
 			//Aqui sabemos que tenemos un id específico
 			$newbies = $this->media->find($id);
 			$data['footer'] = ["js" => ["edit_media.js"]];
-			$data['header'] = ["header_name" => "Edit", "breadcrum" => ["Home" => "/gtproj/", "Collection" => "/gtproj/collection"]];
+			$data['header'] = ["header_name" => "Edit", "breadcrum" => ["Home" => "/gtproj/", "Collection" => "/gtproj/collection"],'user' => $this->user];
 			$data['edit'] = ['newbies' => $newbies];
 			// var_dump($newbies);
 			$this->render('edit',$data);
@@ -73,7 +74,7 @@ class Collection
 		foreach ($tag_list as $key => $value) {
 			$contextual[] = ["url" => "/gtproj?tags[]=".$value['name'], "nav" => $value['name']];
 		}
-		$data['header'] = ["header_name" => "Mi colección", "contextual" => $contextual, "contextual_name" => "Tags", 'message' => $this->message];
+		$data['header'] = ["header_name" => "Mi colección", "contextual" => $contextual, "contextual_name" => "Tags", 'message' => $this->message,'user' => $this->user];
 		$data['footer'] = ["js" => ["cuadricula.js"]];
 		
 		$data['welcome_message'] = ["media" => $media_set];
