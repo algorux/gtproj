@@ -10,7 +10,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action="/gtproj/collection/update" method="POST" enctype="multipart/form-data">
+              <form  action="/gtproj/collection/update" method="POST">
                 <div class="card-body">
                   <?php
                   if (array_key_exists("id", $newbies)) {

@@ -90,7 +90,7 @@
             
           </a>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
+          <a href="/gtproj/user/logout" class="dropdown-item">
             <i class="fas fa-sign-out-alt mr-2"></i> Salir
             
           </a>

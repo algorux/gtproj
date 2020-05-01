@@ -2,11 +2,23 @@
 
 class Home extends BaseController
 {
-	// protected $request;
-	// public function __construct(RequestInterface $request)
- //    {
- //            $this->request = $request;
- //    }
+	protected $media;
+	protected $message;
+	protected $request;
+	protected $mediaCategory;
+	protected $tags;
+	protected $session;
+	public function __construct()
+    {
+    	$this->media =  new \App\Models\MediaModel();
+    	$this->mediaCategory =  new \App\Models\MediaCategory();
+    	$this->tags =  new \App\Models\TagsModel();
+		
+		$this->request = \Config\Services::request();
+		$this->session = \Config\Services::session();
+		$this->message = $this->session->getFlashData('message');
+
+    }
 	public function index()
 	{	
 		$data = [];
@@ -24,7 +36,7 @@ class Home extends BaseController
 		foreach ($tag_list as $key => $value) {
 			$contextual[] = ["url" => "/gtproj?tags[]=".$value['name'], "nav" => $value['name']];
 		}
-		$data['header'] = ["header_name" => "Home", "contextual" => $contextual, "contextual_name" => "Tags"];
+		$data['header'] = ["header_name" => "Home", "contextual" => $contextual, "contextual_name" => "Tags", 'message' => $this->message];
 		$data['footer'] = ["js" => ["cuadricula.js"]];
 		//echo password_hash("ilovegiantess", PASSWORD_DEFAULT)."\n";
 		$data['welcome_message'] = ["media" => $media_set];

@@ -64,7 +64,11 @@ class Collection
 	public function myCollection(){
 		$data = [];
 		$tag_list = $this->tags->get();
-		$media_set = $this->media->getMyCollection(1);
+		$user = $this->session->get('user');
+		if (empty($user)) {
+			return redirect()->to('/gtproj');
+		}
+		$media_set = $this->media->getMyCollection($user['id']);
 		$contextual = [];
 		foreach ($tag_list as $key => $value) {
 			$contextual[] = ["url" => "/gtproj?tags[]=".$value['name'], "nav" => $value['name']];
