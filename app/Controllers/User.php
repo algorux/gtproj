@@ -66,6 +66,10 @@ class User extends BaseController
 
 	}
 
+	public function register() {
+
+	}
+
 	
 
 	

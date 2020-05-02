@@ -105,7 +105,7 @@
           </a>
           
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">Ver todas las notificaciones</a>
+          
         </div>
         <?php
           }
@@ -135,7 +135,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="/gtproj/" class="nav-link active">
+            <a href="/gtproj/" class="nav-link <?=$home?>">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Cuadrícula
@@ -144,16 +144,24 @@
             </a>
             
           </li>
+          <?php
+            if (!empty($user)) {
+              # code...
+            
+          ?>
           <li class="nav-item">
-            <a href="pages/widgets.html" class="nav-link">
-              <i class="nav-icon fas fa-comment-alt"></i>
+            <a href="/gtproj/collection/mycollection" class="nav-link <?=$collection?>">
+              <i class="nav-icon fas fa-images"></i>
               <p>
-                Foro
+                Mi colección
                 
               </p>
             </a>
           </li>
-          <li class="nav-item">
+          <?php
+          }
+          ?>
+         <!--  <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-stream"></i>
               <p>
@@ -162,7 +170,7 @@
               </p>
             </a>
             
-          </li>
+          </li> -->
   
           <li class="nav-header"><?= isset($contextual_name) ? $contextual_name : "Contextual"?></li>
               <div id="taglist-delimitator">

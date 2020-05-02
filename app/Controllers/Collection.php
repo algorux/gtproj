@@ -24,7 +24,8 @@ class Collection
 		
 		$data = [];
 		$tag_list = $this->tags->get();
-		$media_set = $this->media->getMedia();
+		$gets = $this->request->getGet();
+		$media_set = $this->media->getMedia($gets);
 		$contextual = [];
 		foreach ($tag_list as $key => $value) {
 			$contextual[] = ["url" => "/gtproj?tags[]=".$value['name'], "nav" => $value['name']];
@@ -32,7 +33,7 @@ class Collection
 		$data['header'] = ["header_name" => "Home", "contextual" => $contextual, "contextual_name" => "Tags", 'message' => $this->message, 'user' => $this->user];
 		$data['footer'] = ["js" => ["cuadricula.js"]];
 		
-		$data['welcome_message'] = ["media" => $media_set];
+		$data['welcome_message'] = ["media" => $media_set['results'], 'total_count' => $media_set['total_count']];
 		
 		$this->render('welcome_message',$data);	
 	}
@@ -69,16 +70,18 @@ class Collection
 		if (empty($user)) {
 			return redirect()->to('/gtproj');
 		}
-		$media_set = $this->media->getMyCollection($user['id']);
+		$media_set = $this->media->getMyCollection($user['id'], $this->request->getGet());
 		$contextual = [];
 		foreach ($tag_list as $key => $value) {
 			$contextual[] = ["url" => "/gtproj?tags[]=".$value['name'], "nav" => $value['name']];
 		}
-		$data['header'] = ["header_name" => "Mi colección", "contextual" => $contextual, "contextual_name" => "Tags", 'message' => $this->message,'user' => $this->user];
+		$data['header'] = ["header_name" => "Mi colección", "contextual" => $contextual, "contextual_name" => "Tags", 'message' => $this->message,'user' => $this->user, 'collection' => 'active'];
 		$data['footer'] = ["js" => ["cuadricula.js"]];
 		
-		$data['welcome_message'] = ["media" => $media_set];
-		
+		$data['welcome_message'] = ["media" => $media_set['results'],'total_count' => $media_set['total_count'], 'page' => $media_set['page'], 'uri' => $this->request->uri];
+		// echo "<pre>";
+		// var_dump($this->request->uri->getQuery());
+		// echo "</pre>";
 		$this->render('welcome_message',$data);	
 	}
 

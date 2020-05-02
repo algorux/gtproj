@@ -16,35 +16,58 @@ class MediaModel extends Model
 
      protected $db;
 
-     public function getMedia($url_data = [], $limit = 10, $offset = 0) {
+     public function getMedia($url_data = []) {
+          $limit = 10;
+          $offset = 0;
+          if (!empty($url_data['page'])) {
+               $offset = $url_data['page'] * $limit;
+          }
+          // var_dump($offset);
+          unset($url_data['page']);
+
           $this->db      = \Config\Database::connect();
           if (empty($url_data)) {
-               return  $this->where('private', 0)
+               $data = $this->where('private', 0)
                          ->orderBy('id',"DESC")
                    ->findAll($limit, $offset);
+               $count = $this->where('private', 0)
+                         ->orderBy('id',"DESC")
+                   ->countAllResults();
+                   // var_dump($count);
+               return  ['results' => $data, 'total_count' => $count, 'page' => $offset];
           }
      	else
           {    
                
                if (!empty($url_data["tags"])) {
 
-                    $text_query = "SELECT * FROM `media` RIGHT JOIN `media_category` ON `media_category`.`media_id` = `media`.`id` RIGHT JOIN `cat_categories` ON `media_category`.`cat_categories_id` = `cat_categories`.`id`";
-                    $text_query .= 'WHERE private = 0 AND (cat_categories.name ="' .  $url_data["tags"][0].'"';
+
+                    $text_query = " FROM `media` RIGHT JOIN `media_category` ON `media_category`.`media_id` = `media`.`id` RIGHT JOIN `cat_categories` ON `media_category`.`cat_categories_id` = `cat_categories`.`id`";
+                    $text_query .= 'WHERE private = 0 AND (cat_categories.name IN ("' .  $url_data["tags"][0].'"';
                     if (count($url_data['tags']) > 1) {
                         for ($i=1;$i<count($url_data['tags']); $i++) {
-                              $text_query .= ' OR  cat_categories.name ="' . $url_data["tags"][$i] . '"';
+                              $text_query .= ', "' . $url_data["tags"][$i] . '"';
                          }
                     }
-                    $text_query .= ") LIMIT " . $offset . "," . $limit;
+                    $text_query .= ")) GROUP BY media_category.media_id HAVING COUNT(DISTINCT media_category.media_id) = 1";
                     // echo $text_query;
+                    $count_query = 'SELECT media.id' .  $text_query ;
+                    $text_query = 'SELECT *' . $text_query . " LIMIT " . $offset . "," . $limit;
                     $query = $this->db->query($text_query);
+                    $total_results = $this->db->query($count_query);
+                    $total_count = 0;
                     $results = [];
                     foreach ($query->getResult() as $row) {
-                         $results[$row->media_id] = ['tag' => $row->name, 'url'=> $row->url, 'description' =>  $row->description, 'media_id' => $row->media_id];
+                         $results[] = ['tag' => $row->name, 'url'=> $row->url, 'description' =>  $row->description, 'media_id' => $row->media_id];
                          // var_dump($row);
                          // echo $row->url . "<- url ";
                          // echo $row->description . "<- description ";
                     }
+                    foreach ($total_results->getResult() as $value) {
+                         
+                         $total_count++;
+                    }
+                    // var_dump($total_count);
                     // $query = $this->db->table('cat_categories');
                     // $query->select('*');
                     // $query->join('media_category','media_category.cat_categories_id = cat_categories.id');
@@ -56,10 +79,10 @@ class MediaModel extends Model
                     //      }
                     // }
                     
-                    // // echo "<pre>";
-                    // // var_dump($query->getCompiledSelect());
-                    // // echo "</pre>";
-                    return $results;
+                    // echo "<pre>";
+                    // var_dump($results);
+                    // echo "</pre>";
+                    return ['results' => $results, 'total_count' => $total_count, 'page' => $offset];
                    
                     
                }
@@ -67,10 +90,22 @@ class MediaModel extends Model
           }
 
      }
-     public function getMyCollection($user_id, $limit = 10, $offset = 0) {
-          return  $this->where('user_id', $user_id)
+     public function getMyCollection($user_id, $url_data = []) {
+          $limit = 10;
+          $offset = 0;
+          if (!empty($url_data['page'])) {
+               $offset = $url_data['page'] * $limit;
+          }
+          unset($url_data['page']);
+          $count = $this->where('user_id', $user_id)
+                         ->orderBy('id',"DESC")
+                   ->countAllResults();
+          $results = $this->where('user_id', $user_id)
                          ->orderBy('id',"DESC")
                    ->findAll($limit, $offset);
+
+          return ['results' => $results, 'total_count' => $count, 'page' => $offset];
+           
      }
      public function save_first($data){
      	$db = \Config\Database::connect();     
