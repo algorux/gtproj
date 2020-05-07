@@ -73,9 +73,9 @@ class Collection
 		$media_set = $this->media->getMyCollection($user['id'], $this->request->getGet());
 		$contextual = [];
 		foreach ($tag_list as $key => $value) {
-			$contextual[] = ["url" => "/gtproj?tags[]=".$value['name'], "nav" => $value['name']];
+			$contextual[] = ["url" => "/gtproj/collection/mycollection?tags[]=".$value['name'], "nav" => $value['name']];
 		}
-		$data['header'] = ["header_name" => "Mi colección", "contextual" => $contextual, "contextual_name" => "Tags", 'message' => $this->message,'user' => $this->user, 'collection' => 'active'];
+		$data['header'] = ["header_name" => "Mi colección",  'message' => $this->message,'user' => $this->user, 'collection' => 'active'];
 		$data['footer'] = ["js" => ["cuadricula.js"]];
 		
 		$data['welcome_message'] = ["media" => $media_set['results'],'total_count' => $media_set['total_count'], 'page' => $media_set['page'], 'uri' => $this->request->uri];
