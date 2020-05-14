@@ -48,7 +48,7 @@ class BaseController extends Controller
 	 *@var other_footers		String | String Array -> Footers especiales, sobreescriben a los actuales
 	 *@var data	Array -> los datos a pasar a cada vista con el formato nombre_vista => data
 	*/
-	public function render ($principal_view, $data = [], $other_headers = "", $other_footers = "" ) {
+	protected function render ($principal_view, $data = [], $other_headers = "", $other_footers = "" ) {
 		if (gettype($other_headers)== "string" && $other_headers != "") {
 			if (array_key_exists($other_headers, $data))
 				echo view($other_headers,$data[$other_headers]);
@@ -104,8 +104,14 @@ class BaseController extends Controller
 				echo view('renders/footer');
 		}
 	}
-	public function getTags(){
+	protected function setFlashMessage($message){
+		$_SESSION['message'] = $message;
 		
+	}
+	protected function getFlashMessage(){
+		$message = $_SESSION['message'];
+		unset($_SESSION['message']);
+		return $message;
 	}
 
 }

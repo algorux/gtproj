@@ -9,6 +9,8 @@ class Collection
 
 	public function __construct()
     {
+    	session()->set('/gtproj', current_url());
+        return redirect()->to('/gtproj');
     	$this->media =  new \App\Models\MediaModel();
     	$this->mediaCategory =  new \App\Models\MediaCategory();
     	$this->tags =  new \App\Models\TagsModel();
@@ -18,24 +20,26 @@ class Collection
 		$this->message = $this->session->getFlashData('message');
 		$this->user = $this->session->get('user');
 
+
     }
 	public function index()
 	{	
 		
-		$data = [];
-		$tag_list = $this->tags->get();
-		$gets = $this->request->getGet();
-		$media_set = $this->media->getMedia($gets);
-		$contextual = [];
-		foreach ($tag_list as $key => $value) {
-			$contextual[] = ["url" => "/gtproj?tags[]=".$value['name'], "nav" => $value['name']];
-		}
-		$data['header'] = ["header_name" => "Home", "contextual" => $contextual, "contextual_name" => "Tags", 'message' => $this->message, 'user' => $this->user];
-		$data['footer'] = ["js" => ["cuadricula.js"]];
+		// $data = [];
+		// $tag_list = $this->tags->get();
+		// $gets = $this->request->getGet();
+		// $media_set = $this->media->getMedia($gets);
+		// $contextual = [];
+		// foreach ($tag_list as $key => $value) {
+		// 	$contextual[] = ["url" => "/gtproj?tags[]=".$value['name'], "nav" => $value['name']];
+		// }
+		// $data['header'] = ["header_name" => "Home", "contextual" => $contextual, "contextual_name" => "Tags", 'message' => $this->message, 'user' => $this->user];
+		// $data['footer'] = ["js" => ["cuadricula.js"]];
 		
-		$data['welcome_message'] = ["media" => $media_set['results'], 'total_count' => $media_set['total_count']];
+		// $data['welcome_message'] = ["media" => $media_set['results'], 'total_count' => $media_set['total_count']];
 		
-		$this->render('welcome_message',$data);	
+		// $this->render('welcome_message',$data);	
+		return redirect()->to('/gtproj/');
 	}
 
 	public function edit($id = 0) {
@@ -66,10 +70,7 @@ class Collection
 	public function myCollection(){
 		$data = [];
 		$tag_list = $this->tags->get();
-		$user = $this->session->get('user');
-		if (empty($user)) {
-			return redirect()->to('/gtproj');
-		}
+		
 		$media_set = $this->media->getMyCollection($user['id'], $this->request->getGet());
 		$contextual = [];
 		foreach ($tag_list as $key => $value) {

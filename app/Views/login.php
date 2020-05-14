@@ -18,6 +18,7 @@
 </head>
 <body class="login-page" style="min-height: 512.391px;">
   <?php
+  // var_dump($message);
       if (!empty($message)) {
       ?>
       <div class="alert alert-<?=$message['type']?> alert-dismissible">

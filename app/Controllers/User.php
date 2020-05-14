@@ -22,7 +22,7 @@ class User extends BaseController
 		
 		$this->request = \Config\Services::request();
 		$this->session = \Config\Services::session();
-		$this->message = $this->session->getFlashData('message');
+		$this->message = $this->getFlashMessage();
 		$this->user = $this->session->get('user');
 		
 
@@ -30,11 +30,14 @@ class User extends BaseController
 	public function index()
 	{	
 		if (empty($this->user)) {
-			$this->session->setFlashdata('message',["message"=>"No se encontró usuario", 'type' => "error", "icon" => "fas fa-exclamation-triangle"]);
+			$this->setFlashMessage( ["message"=>"No se encontró usuario", 'type' => "error", "icon" => "fas fa-exclamation-triangle"]);
 			return redirect()->to('/gtproj/user/login');
 		}
+		else
+			return redirect()->to('/gtproj');
 	}
 	public function login(){
+			// var_dump($this->message);
 			// var_dump($this->message);
 			if (!empty($this->message)) {
 				echo view('login.php',['message' =>$this->message] );

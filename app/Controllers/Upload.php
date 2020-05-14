@@ -5,6 +5,7 @@ class Upload extends BaseController
 	protected $media;
 	
 	protected $request;
+	protected $session;
 
 	public function __construct()
     {
@@ -17,6 +18,10 @@ class Upload extends BaseController
     }
 	public function index()
 	{	
+		if (empty($this->user)) {
+			$this->session->setFlashdata('message',["message"=>"Inicie sesión", 'type' => "error", "icon" => "fas fa-exclamation-triangle"]);
+			return redirect()->to('/gtproj/user/login');
+		}
 		$data = [];
 		
 		//echo password_hash("ilovegiantess", PASSWORD_DEFAULT)."\n";

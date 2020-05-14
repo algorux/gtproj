@@ -40,7 +40,7 @@ class Home extends BaseController
 		$data['header'] = ["header_name" => "Home", "contextual" => $contextual, "contextual_name" => "Tags", 'message' => $this->message, 'user' => $this->user, 'home' => 'active'];
 		$data['footer'] = ["js" => ["cuadricula.js"]];
 		//echo password_hash("ilovegiantess", PASSWORD_DEFAULT)."\n";
-		$data['welcome_message'] = ["media" => $media_set['results'],'total_count' => $media_set['total_count'], 'page' => $media_set['page'], 'uri' => $this->request->uri];
+		$data['welcome_message'] = ["media" => $media_set['results'],'user' => $this->user,'total_count' => $media_set['total_count'], 'page' => $media_set['page'], 'uri' => $this->request->uri];
 		// echo "<pre>";
 		// var_dump($this->request->uri);
 		// echo "</pre>";
