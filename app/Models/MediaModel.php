@@ -103,6 +103,8 @@ class MediaModel extends Model
           $results = $this->where('user_id', $user_id)
                          ->orderBy('id',"DESC")
                    ->findAll($limit, $offset);
+          // var_dump($results, $user_id);
+
 
           return ['results' => $results, 'total_count' => $count, 'page' => $offset];
            

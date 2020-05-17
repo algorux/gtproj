@@ -9,8 +9,7 @@ class Collection
 
 	public function __construct()
     {
-    	session()->set('/gtproj', current_url());
-        return redirect()->to('/gtproj');
+    		
     	$this->media =  new \App\Models\MediaModel();
     	$this->mediaCategory =  new \App\Models\MediaCategory();
     	$this->tags =  new \App\Models\TagsModel();
@@ -71,7 +70,7 @@ class Collection
 		$data = [];
 		$tag_list = $this->tags->get();
 		
-		$media_set = $this->media->getMyCollection($user['id'], $this->request->getGet());
+		$media_set = $this->media->getMyCollection($this->user['id'], $this->request->getGet());
 		$contextual = [];
 		foreach ($tag_list as $key => $value) {
 			$contextual[] = ["url" => "/gtproj/collection/mycollection?tags[]=".$value['name'], "nav" => $value['name']];
@@ -83,6 +82,7 @@ class Collection
 		// echo "<pre>";
 		// var_dump($this->request->uri->getQuery());
 		// echo "</pre>";
+		// var_dump($data['welcome_message']['uri']->getQuery());
 		$this->render('welcome_message',$data);	
 	}
 

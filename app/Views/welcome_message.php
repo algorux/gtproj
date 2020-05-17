@@ -29,11 +29,21 @@
             <ul class="pagination pagination-sm m-0 float-right">
                   <li class="page-item" ><a class="page-link" href="/gtproj/<?=$uri->getPath()?>">«</a></li>
                   <?php
-                    
-                    $replaced = substr($uri->getQuery(), 0,strpos($uri->getQuery(), "&page="));
-                    if (empty($replaced)) {
+                    if (strpos($uri->getQuery(), "page=") !== FALSE)
+                      // echo "Hay page";
+                      $replaced = substr($uri->getQuery(), 0,strpos($uri->getQuery(), "page=") );
+                    else
                       $replaced = $uri->getQuery();
-                    }
+                    
+                    
+                    // echo $replaced . 'no hay';
+                    // if (strpos($uri->getQuery(), "tags")) {
+                    //   if (empty($replaced))
+                    //     $replaced = $uri->getQuery();
+                    // }
+                    
+                    
+                    
                     // echo "<li  class='page-item'><a>".$replaced.$uri->getQuery()."</a></li>";
                     if (intval($total_count/10)>5 && $page/10 >= 3 && $page/10 < intval($total_count/10)) {
                       for($i = $page/10 - 2; $i< $page/10 + 2 ;$i++)
