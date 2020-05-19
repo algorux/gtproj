@@ -13,6 +13,7 @@ class User extends BaseController
 	protected $mediaCategory;
 	protected $tags;
 	protected $session;
+	protected $email;
 
 	public function __construct()
     {
@@ -24,6 +25,7 @@ class User extends BaseController
 		$this->session = \Config\Services::session();
 		$this->message = $this->getFlashMessage();
 		$this->user = $this->session->get('user');
+		$this->email = \Config\Services::email();
 		
 
     }
@@ -70,7 +72,19 @@ class User extends BaseController
 	}
 
 	public function register() {
+		$this->session->set('session_confirm', rand(0, 99999));
+		echo view('register.php',['session_confirm' => $this->session->get('session_confirm')]);
+	}
 
+	public function registration(){
+		$petition_info = $this->request->getPost();
+		if ($petition_info['session_confirm'] == $this->session->get('session_confirm')) {
+			var_dump( $this->request->getPost());
+			$user = [];
+		}
+		else
+		echo "Error petición no válida";
+		$this->session->remove('session_confirm');
 	}
 
 	

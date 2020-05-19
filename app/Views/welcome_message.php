@@ -36,12 +36,6 @@
                       $replaced = $uri->getQuery();
                     
                     
-                    // echo $replaced . 'no hay';
-                    // if (strpos($uri->getQuery(), "tags")) {
-                    //   if (empty($replaced))
-                    //     $replaced = $uri->getQuery();
-                    // }
-                    
                     
                     
                     // echo "<li  class='page-item'><a>".$replaced.$uri->getQuery()."</a></li>";

@@ -82,7 +82,7 @@
         <a href="forgot-password.html">Olvidé mi contraseña</a>
       </p>
       <p class="mb-0">
-        <a href="register.html" class="text-center">Registrarse</a>
+        <a href="/gtproj/user/register" class="text-center">Registrarse</a>
       </p>
     </div>
     <!-- /.login-card-body -->
@@ -96,6 +96,7 @@
 <script src="/gtproj/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/gtproj/assets/dist/js/adminlte.min.js"></script>
+
 
 
 
