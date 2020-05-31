@@ -47,7 +47,7 @@ class Upload extends BaseController
 			$value->move(FCPATH.'/assets/uploads/media', $newName);
 			
 			$data = [
-					'user_id' 	=> '1',
+					'user_id' 	=> $this->user['id'],
 					'private' 	=> '0',
 					'url'		=> "/gtproj/assets/uploads/media/".$newName,
 					'mediatype'	=> $value->getClientMimeType(),

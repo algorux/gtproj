@@ -17,6 +17,9 @@
   <link rel="stylesheet" href="/gtproj/assets/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <!-- Datepicker -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
+
 </head>
 <body class="hold-transition register-page">
 <div class="register-box">
@@ -54,6 +57,14 @@
           </div>
         </div>
         <div class="input-group mb-3">
+          <input type="text" class="form-control datepicker" name="birthday" placeholder="Fecha de nacimiento" required>
+          <div class="input-group-append">
+            <div class="input-group-text">
+              <span class="fas fa-calendar-alt"></span>
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3">
           <input type="email" class="form-control" name="email" placeholder="Email" required>
           <div class="input-group-append">
             <div class="input-group-text">
@@ -62,10 +73,10 @@
           </div>
         </div>
         <div class="form-group">
-          <select class="form-control" name="">
+          <select class="form-control" name="gender">
             <option disabled selected>Género...</option>
-            <option>Femenino</option>
-            <option>Masculino</option>
+            <option value="f">Femenino</option>
+            <option value="m">Masculino</option>
             
           </select>
         </div>
@@ -125,9 +136,12 @@
 <!-- jQuery -->
 <script src="/gtproj/assets/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="/gtproj/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/gtproj/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
 <script src="/gtproj/assets/dist/js/adminlte.min.js"></script>
 <script src="/gtproj/assets/js/register.js"></script>
+<!-- Datepicker -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+
 </body>
 </html>

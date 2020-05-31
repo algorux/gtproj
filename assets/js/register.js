@@ -7,5 +7,5 @@ $(document).ready(function() {
   //     $("#form").submit();
   // });
 	
-  
+  $('.datepicker').datepicker();
 });

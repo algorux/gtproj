@@ -11,6 +11,7 @@ class User extends BaseController
 	protected $message;
 	protected $request;
 	protected $mediaCategory;
+	protected $UserModel;
 	protected $tags;
 	protected $session;
 	protected $email;
@@ -78,9 +79,28 @@ class User extends BaseController
 
 	public function registration(){
 		$petition_info = $this->request->getPost();
+		// var_dump($this);
 		if ($petition_info['session_confirm'] == $this->session->get('session_confirm')) {
-			var_dump( $this->request->getPost());
-			$user = [];
+			$petition_info['password'] = password_hash($petition_info['password'], PASSWORD_DEFAULT)."\n";
+			$date = new \DateTime($petition_info['birthday']);
+			$petition_info['birthday'] = $date->format('Y-m-d H:i:s');
+			unset($petition_info['confirm_password']);
+			unset($petition_info['session_confirm']);
+
+			$userModel =  new \App\Models\UserModel();
+			$petition_info = $userModel->addUser($petition_info);
+			if ($petition_info['id'] != 0) {
+				unset($petition_info['password']);
+				$this->session->set('user',	$petition_info);
+				$this->session->setFlashdata('message',["message"=>"Éxito al registrar " . $petition_info['username'], 'type' => "success", "icon" => "fas fa-check"]);
+				return redirect()->to('/gtproj/');
+			}
+			else
+			{
+				$this->session->setFlashdata('message',["message"=>"Error de servidor al registrar", 'type' => "error", "icon" => "fas fa-exclamation-triangle"]);
+				return redirect()->to('/gtproj/');
+			}
+			// var_dump($petition_info);
 		}
 		else
 		echo "Error petición no válida";

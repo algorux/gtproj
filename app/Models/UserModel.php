@@ -25,6 +25,12 @@ class UserModel extends Model
           else
                return NULL;
      }
+     public function addUser($user_info){
+          $db = \Config\Database::connect(); 
+          $db->table('user')->insert($user_info);
+          $user_info['id'] = $db->insertID();
+          return $user_info;
+     }
      
      
 
