@@ -14,14 +14,19 @@
                 <div class="card-body">
                   <?php
                   if (array_key_exists("id", $newbies)) {
+                    
+                    $meta_ids = "";
+                    foreach ($tags as $value) {
+                      $meta_ids.= $value.",";
+                    }
                     echo '<center><img src="'.$newbies["url"].'"></center>';
                     echo '
                     <label >Descripcion del archivo (para agregar un nuevo tag utiliza <b>#</b> ej. #giantess)</label>
-                    <input class="form-control" type="text" name="description['.$newbies['id'].']" placeholder="Description">
+                    <input class="form-control" type="text" name="description['.$newbies['id'].']" placeholder="Description" value="'.$newbies["description"].'">
 
                     <div class="form-group">
                       <label>Tags</label>
-                      <select class="select2bs4" multiple="multiple" name="tags['.$newbies['id'].'][]" data-placeholder="Select tags"
+                      <select class="select2bs4" meta-data-ids="'.$meta_ids.'" multiple="multiple" name="tags['.$newbies['id'].'][]" data-placeholder="Select tags"
                               style="width: 100%;">
                         
                       </select>

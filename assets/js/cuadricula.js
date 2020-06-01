@@ -25,4 +25,10 @@ $(document).ready(function() {
     });
     
   });
+
+
+  ///Funciones de modal
+  $('#modal-lg').on('shown.bs.modal', function () {
+    console.log('catch!');
+  })
 });

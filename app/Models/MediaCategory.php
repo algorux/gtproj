@@ -21,6 +21,9 @@ class MediaCategory extends Model
           return $db->insertID();
           // var_dump($ids);
      }
+     public function getMediaCat($media_id){
+          return $this->where('media_id', $media_id)->findAll();
+     }
 
 
 }

@@ -40,6 +40,14 @@ class TagsModel extends Model
           else
                return $return['id'];
      }
+     public function getMediaTags($ids){
+          $media_tags = [];
+          foreach ($ids as $key => $value) {
+               $single_tag = $this->find($value);
+               $media_tags[] = $single_tag['name'];
+          }
+          return $media_tags;
+     }
 
 
 }

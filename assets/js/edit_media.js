@@ -8,7 +8,19 @@ $(document).ready(function() {
 	 	var obj = JSON.parse(data);
 	 	$.each(obj, function(index,value){
 	 		$('.select2bs4').each(function(){
-	 			$(this).append(new Option(value.name, value.id));
+	 			//console.log(ids_selected)
+	 			var ids_selected = $(this).attr("meta-data-ids");
+	 			if (ids_selected) {
+		 			
+		 			if (ids_selected.includes(value.id)) {
+		 				$(this).append(new Option(value.name, value.id, true, true));
+		 			}
+		 			else
+		 				$(this).append(new Option(value.name, value.id));
+		 			
+	 			}
+	 			else
+		 				$(this).append(new Option(value.name, value.id));	
     		});
 	 	});
 

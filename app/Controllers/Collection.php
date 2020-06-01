@@ -6,6 +6,7 @@ class Collection
 	protected $media;
 	protected $message;
 	protected $request;
+	protected $user;
 
 	public function __construct()
     {
@@ -54,9 +55,15 @@ class Collection
 		elseif ($id != 0) {
 			//Aqui sabemos que tenemos un id específico
 			$newbies = $this->media->find($id);
+			if (empty($this->user) || $this->user['id'] != $newbies['user_id']) {
+				$this->session->setFlashdata('message',["message"=>"No tiene permisos para editar", 'type' => "danger", "icon" => "fas fa-exclamation-triangle"]);
+				return redirect()->to('/gtproj/');
+			}
+			$tags = $this->getTagNames($id);
+			//var_dump($tags);
 			$data['footer'] = ["js" => ["edit_media.js"]];
 			$data['header'] = ["header_name" => "Edit", "breadcrum" => ["Home" => "/gtproj/", "Collection" => "/gtproj/collection"],'user' => $this->user];
-			$data['edit'] = ['newbies' => $newbies];
+			$data['edit'] = ['newbies' => $newbies, 'tags' => $tags];
 			// var_dump($newbies);
 			$this->render('edit',$data);
 
@@ -101,6 +108,7 @@ class Collection
 		}
 		
 		foreach ($data['description'] as $key => $value) {
+			$this->media->updateMedia($value,$key);
 			if (empty($data['tags'])) {
 				$this->mediaCategory->where('media_id',$key)->delete();
 			}
@@ -132,7 +140,22 @@ class Collection
 	}
 
 	
-
+	protected function getTagNames($media_id){
+		$cat_categories = $this->mediaCategory->getMediaCat($media_id);
+		$cat_categories_ids =[];
+		//var_dump($cat_categories);
+		foreach ($cat_categories as $index => $value) {
+			
+				$cat_categories_ids[] = $value['cat_categories_id'];
+			
+		}
+		//var_dump($cat_categories_ids);
+		//$tags = $this->tags->getMediaTags($cat_categories_ids);
+		
+		//var_dump($tags_complete);
+		
+		return $cat_categories_ids;
+	}
 	
 	
 

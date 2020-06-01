@@ -33,7 +33,7 @@ class User extends BaseController
 	public function index()
 	{	
 		if (empty($this->user)) {
-			$this->setFlashMessage( ["message"=>"No se encontró usuario", 'type' => "error", "icon" => "fas fa-exclamation-triangle"]);
+			$this->setFlashMessage( ["message"=>"No se encontró usuario", 'type' => "danger", "icon" => "fas fa-exclamation-triangle"]);
 			return redirect()->to('/gtproj/user/login');
 		}
 		else
@@ -62,7 +62,7 @@ class User extends BaseController
 			return redirect()->to('/gtproj/collection/mycollection');
 		}
 		else
-			$this->session->setFlashdata('message',["message"=>"Usuario o contraseña incorrectos", 'type' => "error", "icon" => "fas fa-exclamation-triangle"]);
+			$this->session->setFlashdata('message',["message"=>"Usuario o contraseña incorrectos", 'type' => "danger", "icon" => "fas fa-exclamation-triangle"]);
 			return redirect()->to('/gtproj/user/login');
 		
 	}
@@ -97,7 +97,7 @@ class User extends BaseController
 			}
 			else
 			{
-				$this->session->setFlashdata('message',["message"=>"Error de servidor al registrar", 'type' => "error", "icon" => "fas fa-exclamation-triangle"]);
+				$this->session->setFlashdata('message',["message"=>"Error de servidor al registrar", 'type' => "danger", "icon" => "fas fa-exclamation-triangle"]);
 				return redirect()->to('/gtproj/');
 			}
 			// var_dump($petition_info);

@@ -109,11 +109,25 @@ class MediaModel extends Model
           return ['results' => $results, 'total_count' => $count, 'page' => $offset];
            
      }
+     public function updateMedia($description, $id){
+          $db      = \Config\Database::connect();
+          $builder = $db->table('media');
+          $builder->set('description', $description);
+          $builder->where('id', $id);
+          $builder->update();
+          
+     }
      public function save_first($data){
      	$db = \Config\Database::connect();     
      	$db->table('media')->insert($data);
           return $db->insertID();
           // var_dump($ids);
+     }
+
+     public function getShowMedia($id){
+          $media = $this->find($id);
+          $comments = $this->table('comments')->where('media_id', $media_id)->findAll();
+          return [$media,$comments];
      }
 
 
