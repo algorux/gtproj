@@ -27,7 +27,7 @@ class Collection
 		
 		// $data = [];
 		// $tag_list = $this->tags->get();
-		// $gets = $this->request->getGet();
+		// $gets = $this->request->getGet(null, FILTER_SANITIZE_SPECIAL_CHARS);
 		// $media_set = $this->media->getMedia($gets);
 		// $contextual = [];
 		// foreach ($tag_list as $key => $value) {
@@ -39,7 +39,7 @@ class Collection
 		// $data['welcome_message'] = ["media" => $media_set['results'], 'total_count' => $media_set['total_count']];
 		
 		// $this->render('welcome_message',$data);	
-		return redirect()->to('/gtproj/');
+		return redirect()->to(base_url());
 	}
 
 	public function edit($id = 0) {
@@ -48,6 +48,7 @@ class Collection
 			$newbies = $this->media->find($ids);
 			$data['footer'] = ["js" => ["edit_media.js"]];
 			$data['header'] = ["header_name" => "Edit", "breadcrum" => ["Home" => "/gtproj/", "Collection" => "/gtproj/collection"],'user' => $this->user];
+			$data['header'] = ["header_name" => "Edit", "breadcrum" => ["Home" => base_url(), "Collection" => base_url()."/collection"],'user' => $this->user];
 			$data['edit'] = ['newbies' => $newbies];
 			// var_dump($newbies);
 			$this->render('edit',$data);	
@@ -57,12 +58,12 @@ class Collection
 			$newbies = $this->media->find($id);
 			if (empty($this->user) || $this->user['id'] != $newbies['user_id']) {
 				$this->session->setFlashdata('message',["message"=>"No tiene permisos para editar", 'type' => "danger", "icon" => "fas fa-exclamation-triangle"]);
-				return redirect()->to('/gtproj/');
+				return redirect()->to(base_url());
 			}
 			$tags = $this->getTagNames($id);
 			//var_dump($tags);
 			$data['footer'] = ["js" => ["edit_media.js"]];
-			$data['header'] = ["header_name" => "Edit", "breadcrum" => ["Home" => "/gtproj/", "Collection" => "/gtproj/collection"],'user' => $this->user];
+			$data['header'] = ["header_name" => "Edit", "breadcrum" => ["Home" => base_url(), "Collection" => base_url()."/collection"],'user' => $this->user];
 			$data['edit'] = ['newbies' => $newbies, 'tags' => $tags];
 			// var_dump($newbies);
 			$this->render('edit',$data);
@@ -70,17 +71,17 @@ class Collection
 		}
 		
 		else
-			return redirect()->to('/gtproj/');
+			return redirect()->to(base_url());
 	}
 
 	public function myCollection(){
 		$data = [];
 		$tag_list = $this->tags->get();
 		
-		$media_set = $this->media->getMyCollection($this->user['id'], $this->request->getGet());
+		$media_set = $this->media->getMyCollection($this->user['id'], $this->request->getGet(null, FILTER_SANITIZE_SPECIAL_CHARS));
 		$contextual = [];
 		foreach ($tag_list as $key => $value) {
-			$contextual[] = ["url" => "/gtproj/collection/mycollection?tags[]=".$value['name'], "nav" => $value['name']];
+			$contextual[] = ["url" => base_url()."/collection/mycollection?tags[]=".$value['name'], "nav" => $value['name']];
 		}
 		$data['header'] = ["header_name" => "Mi colección",  'message' => $this->message,'user' => $this->user, 'collection' => 'active'];
 		$data['footer'] = ["js" => ["cuadricula.js"]];
@@ -136,7 +137,7 @@ class Collection
 			}
 		}
 		$this->session->setFlashdata('message',["message"=>"Actualización correcta", 'type' => "success", "icon" => "fas fa-check"]);
-		return redirect()->to('/gtproj/collection');
+		return redirect()->to(base_url().'/collection');
 	}
 
 	

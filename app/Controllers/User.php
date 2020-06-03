@@ -34,10 +34,10 @@ class User extends BaseController
 	{	
 		if (empty($this->user)) {
 			$this->setFlashMessage( ["message"=>"No se encontró usuario", 'type' => "danger", "icon" => "fas fa-exclamation-triangle"]);
-			return redirect()->to('/gtproj/user/login');
+			return redirect()->to('/user/login');
 		}
 		else
-			return redirect()->to('/gtproj');
+			return redirect()->to('/');
 	}
 	public function login(){
 			// var_dump($this->message);
@@ -52,23 +52,23 @@ class User extends BaseController
 		
 	}
 	public function loginprocess(){
-		$logindata = $this->request->getPost();
+		$logindata = $this->request->getPost(null, FILTER_SANITIZE_SPECIAL_CHARS);
 		// $hashed_password = password_hash($logindata['password'], PASSWORD_DEFAULT);
 		$vailidation = $this->userModel->auth($logindata['email'],$logindata['password']);
 		// var_dump($vailidation);
 		if ($vailidation != NULL) {
 			unset($vailidation['password']);
 			$this->session->set('user',	$vailidation);
-			return redirect()->to('/gtproj/collection/mycollection');
+			return redirect()->to(base_url().'/collection/mycollection');
 		}
 		else
 			$this->session->setFlashdata('message',["message"=>"Usuario o contraseña incorrectos", 'type' => "danger", "icon" => "fas fa-exclamation-triangle"]);
-			return redirect()->to('/gtproj/user/login');
+			return redirect()->to(base_url().'/user/login');
 		
 	}
 	public function logout(){
 		$this->session->set('user', []);
-		return redirect()->to('/gtproj');
+		return redirect()->to(base_url());
 
 	}
 
@@ -78,7 +78,7 @@ class User extends BaseController
 	}
 
 	public function registration(){
-		$petition_info = $this->request->getPost();
+		$petition_info = $this->request->getPost(null, FILTER_SANITIZE_SPECIAL_CHARS);
 		// var_dump($this);
 		if ($petition_info['session_confirm'] == $this->session->get('session_confirm')) {
 			$petition_info['password'] = password_hash($petition_info['password'], PASSWORD_DEFAULT)."\n";
@@ -93,18 +93,50 @@ class User extends BaseController
 				unset($petition_info['password']);
 				$this->session->set('user',	$petition_info);
 				$this->session->setFlashdata('message',["message"=>"Éxito al registrar " . $petition_info['username'], 'type' => "success", "icon" => "fas fa-check"]);
-				return redirect()->to('/gtproj/');
+				return redirect()->to(base_url());
 			}
 			else
 			{
 				$this->session->setFlashdata('message',["message"=>"Error de servidor al registrar", 'type' => "danger", "icon" => "fas fa-exclamation-triangle"]);
-				return redirect()->to('/gtproj/');
+				return redirect()->to(base_url());
 			}
 			// var_dump($petition_info);
 		}
 		else
 		echo "Error petición no válida";
 		$this->session->remove('session_confirm');
+	}
+
+	public function sendmail (){
+		$mailinfo = $this->request->getPost(null, FILTER_SANITIZE_SPECIAL_CHARS);
+		$config['protocol'] = 'mail';
+		$config['mailPath'] = '/usr/sbin/sendmail';
+		$config['charset']  = 'iso-8859-1';
+		$config['wordWrap'] = true;
+		$config['SMTPHost'] = 'mail.giantesslatam.com';
+		$config['SMTPUser'] = 'missp@giantesslatam.com';
+		$config['SMTPPass'] = 'T3rm0gr15.';
+		$config['SMTPPort'] = '465';
+		$config['SMTPCrypto'] = 'tls';
+		$config['fromEmail'] = 'missp@giantesslatam.com';
+		$config['fromName'] = 'Señorita P.';
+
+		$this->email->initialize($config);
+		$this->email->setFrom('missp@giantesslatam.com', 'Señorita P.');
+		$this->email->setTo('litleman_alex@hotmail.com');
+		
+
+		$this->email->setSubject('Email Test');
+		$this->email->setMessage('Testing the email class.');
+
+		if (!$this->email->send()) {
+			$this->email->printDebugger();
+			echo "<pre>";
+			var_dump($this->email);
+			echo "</pre>";
+			echo "Error";
+		}
+
 	}
 
 	

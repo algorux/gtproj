@@ -18,7 +18,7 @@ class Tags
 	{	
 		$limit = 10;
 		$offset = 1;
-		$parameters = $this->request->getGet();
+		$parameters = $this->request->getGet(null, FILTER_SANITIZE_SPECIAL_CHARS);
 		if (array_key_exists("limit", $parameters)) {
 			$limit = (int)$parameters['limit'];
 		}

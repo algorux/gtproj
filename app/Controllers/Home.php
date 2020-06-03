@@ -31,7 +31,7 @@ class Home extends BaseController
 		$tags =  new \App\Models\TagsModel();
 		
 		$tag_list = $tags->get();
-		$get_data = $request->getGet();
+		$get_data = $request->getGet(null, FILTER_SANITIZE_SPECIAL_CHARS);
 		$media_set = $media->getMedia($get_data);
 		$contextual = [];
 		foreach ($tag_list as $key => $value) {
@@ -45,6 +45,9 @@ class Home extends BaseController
 		// var_dump($this->request->uri);
 		// echo "</pre>";
 		$this->render('welcome_message',$data);	
+	}
+	public function news() {
+		$this->render('news');
 	}
 
 	

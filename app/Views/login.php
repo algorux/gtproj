@@ -6,13 +6,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="/gtproj/assets/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="<?=base_url()?>/assets/plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="/gtproj/assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <link rel="stylesheet" href="<?=base_url()?>/assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="/gtproj/assets/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="<?=base_url()?>/assets/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
@@ -31,7 +31,7 @@
       ?>
 <div class="login-box">
   <div class="login-logo">
-    <a href="/gtproj">Gtproj</a>
+    <a href="/">Gtproj</a>
   </div>
   <!-- /.login-logo -->
 
@@ -40,7 +40,7 @@
      
       <p class="login-box-msg">Inicia sesión</p>
 
-      <form action="/gtproj/user/loginprocess" method="POST" >
+      <form action="<?=base_url()?>/user/loginprocess" method="POST" >
         <div class="input-group mb-3">
           <input type="email" class="form-control" name="email" placeholder="Email">
           <div class="input-group-append">
@@ -67,7 +67,7 @@
         </div>
       </form>
 
-      <div class="social-auth-links text-center mb-3">
+     <!--  <div class="social-auth-links text-center mb-3">
         <p>- OR -</p>
         <a href="#" class="btn btn-block btn-primary">
           <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
@@ -75,14 +75,14 @@
         <a href="#" class="btn btn-block btn-danger">
           <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
         </a>
-      </div>
+      </div> -->
       <!-- /.social-auth-links -->
 
-      <p class="mb-1">
+      <!-- <p class="mb-1">
         <a href="forgot-password.html">Olvidé mi contraseña</a>
-      </p>
+      </p> -->
       <p class="mb-0">
-        <a href="/gtproj/user/register" class="text-center">Registrarse</a>
+        <a href="<?=base_url()?>/user/register" class="text-center">Registrarse</a>
       </p>
     </div>
     <!-- /.login-card-body -->
@@ -91,11 +91,11 @@
 <!-- /.login-box -->
 
 <!-- jQuery -->
-<script src="/gtproj/assets/plugins/jquery/jquery.min.js"></script>
+<script src="<?=base_url()?>/assets/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="/gtproj/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="<?=base_url()?>/assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- AdminLTE App -->
-<script src="/gtproj/assets/dist/js/adminlte.min.js"></script>
+<script src="<?=base_url()?>/assets/dist/js/adminlte.min.js"></script>
 
 
 

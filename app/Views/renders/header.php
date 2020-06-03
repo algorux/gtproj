@@ -7,30 +7,30 @@
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="/gtproj/assets/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="<?=base_url()?>/assets/plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
-  <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+  <link rel="stylesheet" href="https:/code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bbootstrap 4 -->
-  <link rel="stylesheet" href="/gtproj/assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <link rel="stylesheet" href="<?=base_url()?>/assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
   <!-- iCheck -->
-  <link rel="stylesheet" href="/gtproj/assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <link rel="stylesheet" href="<?=base_url()?>/assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- JQVMap -->
-  <link rel="stylesheet" href="/gtproj/assets/plugins/jqvmap/jqvmap.min.css">
+  <link rel="stylesheet" href="<?=base_url()?>/assets/plugins/jqvmap/jqvmap.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="/gtproj/assets/css/adminlte.min.css">
-  <link rel="stylesheet" href="/gtproj/assets/css/gtproj.css">
+  <link rel="stylesheet" href="<?=base_url()?>/assets/css/adminlte.min.css">
+  <link rel="stylesheet" href="<?=base_url()?>/assets/css/gtproj.css">
   <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="/gtproj/assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <link rel="stylesheet" href="<?=base_url()?>/assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
   <!-- Select2 -->
-  <link rel="stylesheet" href="/gtproj/assets/plugins/select2/css/select2.min.css">
-  <link rel="stylesheet" href="/gtproj/assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+  <link rel="stylesheet" href="<?=base_url()?>/assets/plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="<?=base_url()?>/assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
   <!-- summernote -->
-  <link rel="stylesheet" href="/gtproj/assets/plugins/summernote/summernote-bs4.css">
+  <link rel="stylesheet" href="<?=base_url()?>/assets/plugins/summernote/summernote-bs4.css">
   <!-- Google Font: Source Sans Pro -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+  <link href="https:/fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 </head>
 <body>
-
+<div data-target="<?=base_url()?>" id="base_url" hidden></div>
 <div class="wrapper">
 
   <!-- Navbar -->
@@ -45,9 +45,9 @@
     </ul>
 
     <!-- SEARCH FORM -->
-    <form class="form-inline ml-2">
+    <form class="form-inline ml-2" id="search-go">
       <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Busqueda" aria-label="Search">
+        <input class="form-control form-control-navbar" type="search" placeholder="Busqueda" aria-label="Search" data-toggle="tooltip" data-placement="bottom" title="Búsuqeda por comas, separe cada palabra con una coma">
         <div class="input-group-append">
           <button class="btn btn-navbar" type="submit">
             <i class="fas fa-search"></i>
@@ -59,28 +59,34 @@
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
       <!-- Messages Dropdown Menu -->
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-comments"></i>
           <span class="badge badge-success navbar-badge">3</span>
         </a>
         
-      </li>
+      </li> -->
       <!-- Notifications Dropdown Menu -->
-     
+      <li class="nav-item">
+        <a class="nav-link"  href="<?=base_url()?>/home/news ">
+          <i class="fas fa-info-circle"></i>
+          
+        </a>
+        
+      </li>
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-user"></i>
           
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">Panel de usuario</span>
+          <span class="dropdown-item dropdown-header">Panel de <?=empty($user) ? "usuario" : $user['username']?></span>
           <div class="dropdown-divider"></div>
           <?php
           if (empty($user)) {
           
           ?>
-          <a href="/gtproj/user/login" class="dropdown-item">
+          <a href="<?=base_url()?>/user/login" class="dropdown-item">
             <i class="fas fa-sign-in-alt mr-2"></i> Iniciar sesión
           </a>
           <?php
@@ -89,7 +95,7 @@
           
           ?>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
+          <!-- <a href="#" class="dropdown-item">
             <i class="fas fa-users mr-2"></i> 8 solicitudes
             <span class="float-right text-muted text-sm">12 horas</span>
           </a>
@@ -97,9 +103,9 @@
           <a href="#" class="dropdown-item">
             <i class="fas fa-hand-peace mr-2"></i> 3 nuevos likes
             
-          </a>
+          </a> -->
           <div class="dropdown-divider"></div>
-          <a href="/gtproj/user/logout" class="dropdown-item">
+          <a href="<?=base_url()?>/user/logout" class="dropdown-item">
             <i class="fas fa-sign-out-alt mr-2"></i> Salir
             
           </a>
@@ -120,7 +126,7 @@
   <aside class="main-sidebar sidebar-dark-danger elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-      <img src="/gtproj/assets/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+      <img src="<?=base_url()?>/assets/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">GTProj</span>
     </a>
@@ -135,7 +141,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="/gtproj/" class="nav-link <?=$home?>">
+            <a href="<?=base_url()?>" class="nav-link <?=$home?>">
               <i class="nav-icon fas fa-th"></i>
               <p>
                 Cuadrícula
@@ -150,7 +156,7 @@
             
           ?>
           <li class="nav-item">
-            <a href="/gtproj/collection/mycollection" class="nav-link <?=$collection?>">
+            <a href="<?=base_url()?>/collection/mycollection" class="nav-link <?=$collection?>">
               <i class="nav-icon fas fa-images"></i>
               <p>
                 Mi colección

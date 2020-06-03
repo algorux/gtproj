@@ -3,7 +3,8 @@ $(document).ready(function() {
 
 //Initialize Select2 Elements
 //Go fetch categories
-	$.get("/gtproj/tags?limit=0")
+	var base_url = $("#base_url").attr('data-target');
+	$.get(base_url +"/tags?limit=0")
 	 .done(function(data){
 	 	var obj = JSON.parse(data);
 	 	$.each(obj, function(index,value){

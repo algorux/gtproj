@@ -18,7 +18,8 @@ class UserModel extends Model
           $attempt = $this
           ->where('email', $email)
           ->first();
-          // var_dump($attempt);
+          $attempt['password'] = substr( $attempt['password'], 0, 60 );
+          
           if (password_verify($password, $attempt['password'])) {
                return $attempt;
           }

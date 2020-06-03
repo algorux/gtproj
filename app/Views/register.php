@@ -8,13 +8,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="/gtproj/assets/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="<?=base_url()?>/assets/plugins/fontawesome-free/css/all.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- icheck bootstrap -->
-  <link rel="stylesheet" href="/gtproj/assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <link rel="stylesheet" href="<?=base_url()?>/assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="/gtproj/assets/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="<?=base_url()?>/assets/dist/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <!-- Datepicker -->
@@ -24,14 +24,14 @@
 <body class="hold-transition register-page">
 <div class="register-box">
   <div class="register-logo">
-    <a href="/gtproj/">GTProj</a>
+    <a href="<?=base_url()?>">GTProj</a>
   </div>
 
   <div class="card">
     <div class="card-body register-card-body">
       <p class="login-box-msg">Registro de nuevo usuario</p>
 
-      <form action="/gtproj/user/registration" method="post" id="form">
+      <form action="<?=base_url()?>/user/registration" method="post" id="form">
         <div class="input-group mb-3">
           <input type="text" class="form-control" name="name" placeholder="Nombre">
           <div class="input-group-append">
@@ -126,7 +126,7 @@
         </a>
       </div> -->
 
-      <a href="login.html" class="text-center">Ya tengo una cuenta</a>
+      <a href="<?=base_url()?>/user/login" class="text-center">Ya tengo una cuenta</a>
     </div>
     <!-- /.form-box -->
   </div><!-- /.card -->
@@ -134,12 +134,12 @@
 <!-- /.register-box -->
 
 <!-- jQuery -->
-<script src="/gtproj/assets/plugins/jquery/jquery.min.js"></script>
+<script src="<?=base_url()?>/assets/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
-<script src="/gtproj/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+<script src="<?=base_url()?>/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
-<script src="/gtproj/assets/dist/js/adminlte.min.js"></script>
-<script src="/gtproj/assets/js/register.js"></script>
+<script src="<?=base_url()?>/assets/dist/js/adminlte.min.js"></script>
+<script src="<?=base_url()?>/assets/js/register.js"></script>
 <!-- Datepicker -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
 

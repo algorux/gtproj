@@ -20,13 +20,13 @@ class Upload extends BaseController
 	{	
 		if (empty($this->user)) {
 			$this->session->setFlashdata('message',["message"=>"Inicie sesión", 'type' => "error", "icon" => "fas fa-exclamation-triangle"]);
-			return redirect()->to('/gtproj/user/login');
+			return redirect()->to(base_url().'/user/login');
 		}
 		$data = [];
 		
 		//echo password_hash("ilovegiantess", PASSWORD_DEFAULT)."\n";
 		$data['footer'] = ["js" => ["upload.js"]];
-		$data['header'] = ["header_name" => "My Collection", "breadcrum" => ["Home" => "/gtproj/"],'user' => $this->user, 'collection' => 'active'];
+		$data['header'] = ["header_name" => "My Collection", "breadcrum" => ["Home" => base_url()],'user' => $this->user, 'collection' => 'active'];
 		$this->render('upload',$data);	
 	}
 
@@ -49,7 +49,7 @@ class Upload extends BaseController
 			$data = [
 					'user_id' 	=> $this->user['id'],
 					'private' 	=> '0',
-					'url'		=> "/gtproj/assets/uploads/media/".$newName,
+					'url'		=> base_url()."/assets/uploads/media/".$newName,
 					'mediatype'	=> $value->getClientMimeType(),
  			];
  			
@@ -58,10 +58,10 @@ class Upload extends BaseController
 		
 		// $data['footer'] = ["js" => ["cuadricula.js"]];
 		// $data['uploaded'] = ["media" => $this->media->find($ids)];
-		// $data['header'] = ["header_name" => "Uploaded", "breadcrum" => ["Home" => "/gtproj/", "Upload" => "/gtproj/upload"]];
+		// $data['header'] = ["header_name" => "Uploaded", "breadcrum" => ["Home" => "//", "Upload" => "//upload"]];
 		// $this->render('uploaded',$data)
 		$this->session->setFlashdata('uploaded_ids',$ids);
-		return redirect()->to('/gtproj/collection/edit');
+		return redirect()->to(base_url().'/collection/edit');
 	}
 
 	
