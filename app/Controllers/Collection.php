@@ -47,7 +47,6 @@ class Collection
 		if (!empty($ids)) {
 			$newbies = $this->media->find($ids);
 			$data['footer'] = ["js" => ["edit_media.js"]];
-			$data['header'] = ["header_name" => "Edit", "breadcrum" => ["Home" => "/gtproj/", "Collection" => "/gtproj/collection"],'user' => $this->user];
 			$data['header'] = ["header_name" => "Edit", "breadcrum" => ["Home" => base_url(), "Collection" => base_url()."/collection"],'user' => $this->user];
 			$data['edit'] = ['newbies' => $newbies];
 			// var_dump($newbies);
