@@ -111,6 +111,13 @@
           </a>
           
           <div class="dropdown-divider"></div>
+          <div class="dropdown-divider"></div>
+          <a href="<?=base_url()?>/user?id=<?=$user['id']?>" class="dropdown-item">
+            <i class="fas fa-user mr-2"></i> Mi perfil
+            
+          </a>
+          
+          <div class="dropdown-divider"></div>
           
         </div>
         <?php
@@ -125,8 +132,8 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-danger elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
-      <img src="<?=base_url()?>/assets/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
+    <a href="index3.html" class="brand-link" >
+      <img src="<?=base_url()?>/assets/img/gtproj.png" alt="Gt proj" style="background-color: white;" class="brand-image img-circle elevation-3"
            style="opacity: .8">
       <span class="brand-text font-weight-light">GTProj</span>
     </a>

@@ -144,7 +144,7 @@
   <div id="comment-container" hidden>
     <div class="timeline-item" style="border-bottom: 1px groove rgba(46,94,2013,0.62);border-radius: 20px;border-top: 1px groove rgba(213,24,24,0.62);border-radius: 20px;">
       <span class="time"><i class="fas fa-clock"></i> -when- </span>
-      <h3 class="timeline-header"><a href="//user/view/-whoid-"> -who- </a> dijo:</h3>
+      <h3 class="timeline-header"><a href="<?=base_url()?>/user?id=-whoid-"> -who- </a> dijo:</h3>
 
       <div class="timeline-body">
         -what-

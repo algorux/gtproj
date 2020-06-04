@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>GTProj | Página de registro</title>
+  <title>GTSLatam | Página de registro</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -21,12 +21,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
 
 </head>
-<body class="hold-transition register-page">
+<body class="hold-transition register-page"  style="background-image: url('<?=base_url()?>/assets/img/gtproj.png');">
 <div class="register-box">
   <div class="register-logo">
-    <a href="<?=base_url()?>">GTProj</a>
+    <a href="<?=base_url()?>" style="color: red;">Giantesslatam</a>
   </div>
-
+  <div data-target="<?=base_url()?>" id="base_url" hidden></div>
   <div class="card">
     <div class="card-body register-card-body">
       <p class="login-box-msg">Registro de nuevo usuario</p>
@@ -49,7 +49,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="text" class="form-control" name="username" placeholder="Nombre de usuario" required>
+          <input type="text" class="form-control" id="username" name="username" placeholder="Nombre de usuario" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -65,7 +65,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="email" class="form-control" name="email" placeholder="Email" required>
+          <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -81,7 +81,7 @@
           </select>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" name="password" placeholder="Password" required>
+          <input type="password" class="form-control" name="password" id="password" placeholder="Password" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -89,7 +89,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" name="confirm_password" placeholder="Confirme password">
+          <input type="password" class="form-control" name="confirm_password" id="confirm" placeholder="Confirme password" required>
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -142,6 +142,7 @@
 <script src="<?=base_url()?>/assets/js/register.js"></script>
 <!-- Datepicker -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+
 
 </body>
 </html>

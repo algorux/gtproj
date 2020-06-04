@@ -47,7 +47,8 @@ class Home extends BaseController
 		$this->render('welcome_message',$data);	
 	}
 	public function news() {
-		$this->render('news');
+		$data['header'] = ['user' => $this->user]; 
+		$this->render('news',$data);
 	}
 
 	

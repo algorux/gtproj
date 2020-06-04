@@ -15,7 +15,7 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form" action="/upload/" method="POST" enctype="multipart/form-data">
+              <form role="form" action="<?=base_url()?>/upload/" method="POST" enctype="multipart/form-data">
                 <div class="card-body">
                   
                   <div class="form-group">

@@ -140,7 +140,8 @@
                       <li>Respuestas en los comentarios</li>
                       <li>Adición de enlaces de forma libre tanto en descripción, como en comentarios</li>
                       <li>Búsquedas específicas y de texto completo</li>
-
+                      <li>Creación de colecciones personalizadas para que todo esté organizado!</li>
+                      <li>Iniciado de sesión a través de redes sociales</li>
                     </ul>
                   </div>
                   <div class="timeline-footer">

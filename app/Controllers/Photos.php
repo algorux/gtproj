@@ -60,6 +60,35 @@ class Photos extends ResourceController
     	
     	return $this->respond($result, 200, "ok");
     }
+    public function checkUE($mail=null){
+        if ($mail == null || strpos($mail, "@") === false) {
+            return $this->respond("Bad format", 400, "error");
+        }
+        $user = new \App\Models\UserModel;
+
+        $userdata = $user->where('email',$mail)->first();
+
+        
+        if (empty($userdata)) {
+            return $this->respond("No existe", 400, "error");
+        }
+        return $this->respond("Ya existe", 200, "ok");
+    }
+
+    public function checkUN($name=null){
+        if ($name == null) {
+            return $this->respond("Bad format", 400, "error");
+        }
+        $user = new \App\Models\UserModel;
+
+        $userdata = $user->where('username',$name)->first();
+
+        
+        if (empty($userdata)) {
+            return $this->respond("No existe", 400, "error");
+        }
+        return $this->respond("Ya existe", 200, "ok");
+    }
 
     // ...
 }

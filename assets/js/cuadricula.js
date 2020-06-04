@@ -1,4 +1,6 @@
 $(document).ready(function() {
+  //atrapar urlbase
+  var base_url = $("#base_url").attr('data-target')
 	//cambio de tamaño en las cuadrículas
   $("#button-many-cards").on('click', function(){
   	$("#cuadricula").children().removeClass("col-lg-4");
@@ -32,10 +34,10 @@ $(document).ready(function() {
     //console.log('catch!');
     var id = $(this).attr('data-target-id');
     // console.log(id);
-    $.get('/gtproj/photos/show/' + id)
+    $.get(base_url + '/photos/show/' + id)
     .done(function(data){
      
-      $.get('/gtproj/photos/comments/' + id).
+      $.get(base_url + '/photos/comments/' + id).
       done(function(data){
         $("#comments-box").html("");
         $.each(data,function(index, value){
@@ -51,7 +53,7 @@ $(document).ready(function() {
         console.log("Comment load error");
       });
       $("#edit-element").hide();
-      $("#edit-element").attr('href', ("/gtproj/collection/edit/"+id));
+      $("#edit-element").attr('href', (base_url + "/collection/edit/"+id));
       $("#download-element").attr('href', (data[0].url));
       $("#image-container").attr("src", data[0].url);
       $("#description-image").html(data[0].description);
@@ -67,7 +69,7 @@ $(document).ready(function() {
       var comment_added = $("#comment-add").val();
       $("#comment-add").val("");
       event.stopPropagation();
-      $.post("/gtproj/photos/postComment/" + id, {comment: comment_added}).
+      $.post(base_url + "/photos/postComment/" + id, {comment: comment_added}).
       done(function(data){
         console.log(data);
         
@@ -103,6 +105,6 @@ $(document).ready(function() {
       else
         outlinetext += value.trim() ;
     });
-    window.location.href = "/gtproj" + outlinetext;
+    window.location.href = base_url  + outlinetext;
   });
 });

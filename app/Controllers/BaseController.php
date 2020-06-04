@@ -113,5 +113,37 @@ class BaseController extends Controller
 		unset($_SESSION['message']);
 		return $message;
 	}
+	protected function generateRandomString($length = 15) {
+    	return substr(str_shuffle(str_repeat($x='0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ', ceil($length/strlen($x)) )),1,$length);
+	}
+	protected function sendmail ($to, $subject, $message){
+		$mailinfo = $this->request->getPost(null, FILTER_SANITIZE_SPECIAL_CHARS);
+		$config['protocol'] = 'mail';
+		$config['mailPath'] = '/usr/sbin/sendmail';
+		$config['charset']  = 'iso-8859-1';
+		$config['wordWrap'] = true;
+		$config['SMTPHost'] = 'mail.giantesslatam.com';
+		$config['SMTPUser'] = 'missp@giantesslatam.com';
+		$config['SMTPPass'] = 'T3rm0gr15.';
+		$config['SMTPPort'] = '465';
+		$config['SMTPCrypto'] = 'tls';
+		$config['fromEmail'] = 'missp@giantesslatam.com';
+		$config['fromName'] = 'Señorita P.';
+
+		$this->email->initialize($config);
+		$this->email->setFrom('missp@giantesslatam.com', 'Miss P.');
+		$this->email->setTo($to);
+		
+
+		$this->email->setSubject($subject);
+		$this->email->setMessage($message);
+
+		if (!$this->email->send()) {
+			return "Error";
+		}
+		return "Success";
+			
+
+	}
 
 }
