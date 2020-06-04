@@ -1,6 +1,24 @@
 $(document).ready(function() {
+  
   //atrapar urlbase
-  var base_url = $("#base_url").attr('data-target')
+  var base_url = $("#base_url").attr('data-target');
+  var disclaimer = $("#disclaimer").attr('data-target');
+  // console.log(typeof(disclaimer));
+  if (disclaimer == "0") {
+    $('#modal-disclaimer').modal({
+    backdrop: 'static',
+    keyboard: false,
+    show: true,
+    });
+    
+    
+    
+  }
+  $("#aceptar-disclosure").on('click',function(){
+    $.get(base_url + '/home/acceptdisclaimer').done(function(data){console.log(data)});
+    $('#modal-disclaimer').modal('hide');
+  });
+
 	//cambio de tamaño en las cuadrículas
   $("#button-many-cards").on('click', function(){
   	$("#cuadricula").children().removeClass("col-lg-4");
@@ -16,7 +34,7 @@ $(document).ready(function() {
     var selector = $(this);
     var current_page = parseInt(selector.attr("current-page"));
     current_page ++;
-    $.get('/gtproj/tags?limit=10&offset=' + current_page)
+    $.get(base_url + '/gtproj/tags?limit=10&offset=' + current_page)
     .done(function(data){
       // console.log(data);
       data = JSON.parse(data);

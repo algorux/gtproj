@@ -19,6 +19,7 @@ class Collection
 		$this->session = \Config\Services::session();
 		$this->message = $this->session->getFlashData('message');
 		$this->user = $this->session->get('user');
+		$this->disclaimer = $this->session->get('disclaimer');
 
 
     }
@@ -85,7 +86,7 @@ class Collection
 		$data['header'] = ["header_name" => "Mi colección",  'message' => $this->message,'user' => $this->user, 'collection' => 'active'];
 		$data['footer'] = ["js" => ["cuadricula.js"]];
 		
-		$data['welcome_message'] = ["media" => $media_set['results'],'total_count' => $media_set['total_count'], 'page' => $media_set['page'], 'uri' => $this->request->uri];
+		$data['welcome_message'] = ["media" => $media_set['results'],'total_count' => $media_set['total_count'], 'page' => $media_set['page'], 'uri' => $this->request->uri, 'disclaimer' => $this->disclaimer];
 		// echo "<pre>";
 		// var_dump($this->request->uri->getQuery());
 		// echo "</pre>";

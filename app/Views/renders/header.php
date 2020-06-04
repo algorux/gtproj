@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>GTProj</title>
+  <title>GTSLatam</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -31,6 +31,7 @@
 </head>
 <body>
 <div data-target="<?=base_url()?>" id="base_url" hidden></div>
+
 <div class="wrapper">
 
   <!-- Navbar -->
@@ -135,7 +136,7 @@
     <a href="index3.html" class="brand-link" >
       <img src="<?=base_url()?>/assets/img/gtproj.png" alt="Gt proj" style="background-color: white;" class="brand-image img-circle elevation-3"
            style="opacity: .8">
-      <span class="brand-text font-weight-light">GTProj</span>
+      <span class="brand-text font-weight-light">GTSLatam</span>
     </a>
 
     <!-- Sidebar -->

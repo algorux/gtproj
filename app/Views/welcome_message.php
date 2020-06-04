@@ -1,7 +1,7 @@
 
 
   <!-- Content Wrapper. Contains page content -->
-  
+  <div data-target="<?=isset($disclaimer) ? $disclaimer : '0'?>" id="disclaimer" hidden></div>
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
@@ -123,6 +123,9 @@
                     
                  
                   <li class="page-item"><a class="page-link" href="<?=base_url().'/'.$uri->getPath()?>??<?=$replaced?>&page=<?= intval($total_count/10); ?>" >»</a></li>
+                  <!-- <li><button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-disclaimer">
+                  Launch Large Modal
+                </button></li> -->
                 </ul>
             </div>
           </div>
@@ -219,3 +222,35 @@
     <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
+<div class="modal fade" id="modal-disclaimer">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Disclaimer</h4>
+              
+            </div>
+            <div class="modal-body">
+              <p>
+                Al acceder al sitio estás de acuerdo con lo siguiente:
+                <ul>
+                  <li>Tengo al menos 18 años de edad</li>
+                  <li>El material que puedo ver en ésta página es para mi uso personal y no voy a exponer menores a él</li>
+                  <li>Deseo recibir o enviar material de éste sitio</li>
+                  <li>Mirar, leer, descargar o cargar contenido en este sitio web no viola los estándares de mi comunidad</li>
+                  <li>Deseo recibir el material que este sitio web ofrece</li>
+                  <li>Solamente yo soy responsable por cualquier información que yo brinde a este sitio, incluídas imágenes, textos, multimedia, entre otros, por lo que éste sitio y sus asociados no tendrán implicaciones legales por cualquier información fraudulenta que yo brinde</li>
+                  <li>Este modal de advertencia es constituye un acuerdo legal entre el sitio y su usuario</li>
+                  <li>Si usted ha podido leer, entender y afirmar lo arriba mencionado entiende que este sitio puede tener contenido para adultos y no va de NINGUNA forma a exponer a menores de edad al mismo</li>
+                  <li>Proveer una declaración falsa tiene implicaciones legales y se considera una ofensa criminal</li>
+                </ul>
+              </p>
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-primary" id="aceptar-disclosure">Aceptar</button>
+              <a href="https://google.com" class="btn btn-default">Salir</a>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>

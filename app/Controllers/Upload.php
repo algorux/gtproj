@@ -43,17 +43,21 @@ class Upload extends BaseController
 		}
 		$ids = [];
 		foreach ($file as $value) {
-			$newName = $value->getRandomName();
-			$value->move(FCPATH.'/assets/uploads/media', $newName);
 			
-			$data = [
-					'user_id' 	=> $this->user['id'],
-					'private' 	=> '0',
-					'url'		=> base_url()."/assets/uploads/media/".$newName,
-					'mediatype'	=> $value->getClientMimeType(),
- 			];
- 			
-			$ids[] = $this->media->save_first($data);
+			if (strpos($value->getClientMimeType(),"image")!==false) {
+				
+				$newName = $value->getRandomName();
+				$value->move(FCPATH.'/assets/uploads/media', $newName);
+				
+				$data = [
+						'user_id' 	=> $this->user['id'],
+						'private' 	=> '0',
+						'url'		=> base_url()."/assets/uploads/media/".$newName,
+						'mediatype'	=> $value->getClientMimeType(),
+	 			];
+	 			
+				$ids[] = $this->media->save_first($data);
+			}
 		}
 		
 		// $data['footer'] = ["js" => ["cuadricula.js"]];

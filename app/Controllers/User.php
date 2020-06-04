@@ -117,7 +117,7 @@ class User extends BaseController
 			if ($petition_info['id'] != 0) {
 				unset($petition_info['password']);
 				$url_set = base_url().'/user/confirm?key='.$petition_info['renewalkey'] . "&mail=" . $petition_info['email'];
-				$emailmsg = 'Hola! '.$petition_info['username'].'. Gracias por registrarte, en el siguiente <a href="'.$url_set.'">enlace</a> podrá activar de forma automática a su cuenta, en caso de no poder acceder al enlace copie y pegue lo siguiente: '.$url_set . ' Si aún presenta problemas conteste éste correo para activarlo de forma manual';
+				$emailmsg = 'Hola! '.$petition_info['username'].'. Gracias por registrarte, en el siguiente enlace: '.$url_set.' podrá activar de forma automática a su cuenta, en caso de no poder acceder al enlace copie y pegue lo siguiente: '.$url_set . ' Si aún presenta problemas conteste éste correo para activarlo de forma manual';
 				$this->sendmail($petition_info['email'],'Activación de su cuenta', $emailmsg);
 				// $this->session->set('user',	$petition_info);
 				$this->session->setFlashdata('message',["message"=>"Éxito al registrar, revise su correo para continuar " . $petition_info['username'], 'type' => "success", "icon" => "fas fa-check"]);
@@ -155,11 +155,20 @@ class User extends BaseController
 
 	public function update($id) {
 		$petition_info = $this->request->getPost(null, FILTER_SANITIZE_SPECIAL_CHARS);
+		if ($this->user['id'] != $id) {
+			$this->session->setFlashdata('message',["message"=> "Hubo un problema con la sesión", 'type' => "danger", "icon" => "fas fas fa-exclamation-triangle"]);
+			return redirect()->to(base_url() . "/user?id=" . $id);
+		}
 		if ($petition_info['password'] != $petition_info['confirm_password']) {
 			$this->session->setFlashdata('message',["message"=> "Las contraseñas no coinciden", 'type' => "danger", "icon" => "fas fas fa-exclamation-triangle"]);
 			return redirect()->to(base_url() . "/user?id=" . $id);
 		}
 		unset($petition_info['confirm_password']);
+		if ($petition_info['password'] == "") {
+			unset($petition_info['password']);
+		}
+		else
+			$petition_info['password'] = password_hash($petition_info['password'], PASSWORD_DEFAULT)."\n";
 		$this->userModel->updateUser($petition_info,$id);
 		
 		$this->session->setFlashdata('message',["message"=> "Éxito al actualizar", 'type' => "success", "icon" => "fas fas fa-check"]);
