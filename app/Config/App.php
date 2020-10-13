@@ -21,7 +21,7 @@ class App extends BaseConfig
 	| environments.
 	|
 	*/
-	public $baseURL = 'http://localhost/gtproj';
+	public $baseURL = 'http://gtproj.com';
 
 	/*
 	|--------------------------------------------------------------------------

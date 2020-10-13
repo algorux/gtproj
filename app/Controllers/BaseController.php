@@ -122,13 +122,13 @@ class BaseController extends Controller
 		$config['mailPath'] = '/usr/sbin/sendmail';
 		$config['charset']  = 'iso-8859-1';
 		$config['wordWrap'] = true;
-		$config['SMTPHost'] = 'mail.giantesslatam.com';
-		$config['SMTPUser'] = 'missp@giantesslatam.com';
-		$config['SMTPPass'] = 'T3rm0gr15.';
-		$config['SMTPPort'] = '465';
-		$config['SMTPCrypto'] = 'tls';
-		$config['fromEmail'] = 'missp@giantesslatam.com';
-		$config['fromName'] = 'Señorita P.';
+		//$config['SMTPHost'] = 'mail.giantesslatam.com';
+		//$config['SMTPUser'] = 'missp@giantesslatam.com';
+		//$config['SMTPPass'];
+		//$config['SMTPPort'] = '465';
+		//$config['SMTPCrypto'] = 'tls';
+		//$config['fromEmail'] = 'missp@giantesslatam.com';
+		//$config['fromName'] = 'Señorita P.';
 
 		$this->email->initialize($config);
 		$this->email->setFrom('missp@giantesslatam.com', 'Miss P.');

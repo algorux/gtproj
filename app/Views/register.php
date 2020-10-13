@@ -14,7 +14,7 @@
   <!-- icheck bootstrap -->
   <link rel="stylesheet" href="<?=base_url()?>/assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="<?=base_url()?>/assets/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="<?=base_url()?>/assets/css/adminlte.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   <!-- Datepicker -->
@@ -138,7 +138,7 @@
 <!-- Bootstrap 4 -->
 <script src="<?=base_url()?>/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
 <!-- AdminLTE App -->
-<script src="<?=base_url()?>/assets/dist/js/adminlte.min.js"></script>
+<script src="<?=base_url()?>/assets/js/adminlte.min.js"></script>
 <script src="<?=base_url()?>/assets/js/register.js"></script>
 <!-- Datepicker -->
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
