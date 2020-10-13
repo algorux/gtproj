@@ -131,7 +131,7 @@ class BaseController extends Controller
 		//$config['fromName'] = 'Señorita P.';
 
 		$this->email->initialize($config);
-		$this->email->setFrom('missp@giantesslatam.com', 'Miss P.');
+		//$this->email->setFrom('missp@giantesslatam.com', 'Miss P.');
 		$this->email->setTo($to);
 		
 
